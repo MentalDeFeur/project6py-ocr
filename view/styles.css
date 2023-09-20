@@ -1,0 +1,36 @@
+nav{
+    background-color: transparent;
+    height: 100px;
+    display: flex;
+    align-items: center:
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+
+.nav-bar a {
+   margin-left: 15px;
+}
+
+#video{
+    width: 100%
+}
+
+header{
+    height: 600px;
+    overflow: hidden;
+}
+
+h2{
+    color: #fff;
+}
+
+section{
+    margin: 0 20%;
+}
+
+.movies img{
+    width: 100%;
+    margin-top: 10px;
+}
