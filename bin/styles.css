@@ -17,6 +17,8 @@ nav{
     margin: auto;
     padding: auto;
     display: flex;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
 .nav-menu-right{
@@ -29,4 +31,8 @@ nav{
 
 .nav-menu-right li{
     margin-right : 30px;
+}
+
+div{
+
 }
