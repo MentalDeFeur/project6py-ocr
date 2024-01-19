@@ -1,36 +1,32 @@
+body{
+    font-family: Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
 nav{
-    background-color: transparent;
-    height: 100px;
     display: flex;
-    align-items: center:
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    background-color: gray;
 }
 
-.nav-bar a {
-   margin-left: 15px;
+.nav-menu-left{
+    list-style: none;
+    margin: auto;
+    padding: auto;
+    display: flex;
 }
 
-#video{
-    width: 100%
+.nav-menu-right{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    margin-bottom: 30px;
+    list-style: none;
 }
 
-header{
-    height: 600px;
-    overflow: hidden;
-}
-
-h2{
-    color: #fff;
-}
-
-section{
-    margin: 0 20%;
-}
-
-.movies img{
-    width: 100%;
-    margin-top: 10px;
+.nav-menu-right li{
+    margin-right : 30px;
 }
