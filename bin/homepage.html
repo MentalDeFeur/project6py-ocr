@@ -7,6 +7,25 @@
     <title>JustStreamIt</title>
 </head>
 
+<script>
+    const apiURL = "http://127.0.0.1:8000/"
+    const dataContainer = document.getElementById()
+    fetch (apiURL)
+        .then(response => {
+            if(!response.ok){
+                throw new Error('La requête a échoué avec le code de statut : ${reponse.status}');
+            }
+            return response.json();
+        })
+        .then(data => {
+            dataContainer.innerText = JSON,stringify(data, null,2);
+        })
+
+        .catch(error => {
+            console.error("Une erreur s'est produite lors de la requête à l'API :",error.message);
+        });
+</script>
+
 
 <body>
     <header>
@@ -16,7 +35,7 @@
         <section class="carousel">
             <!--Carrousel de vidéos-->
             <div class="video-card">
-                <img src="video-thumbnail.jpg" alt="Video Thumbnail">
+                <img id="video" src="video-thumbnail.jpg" alt="Video Thumbnail">
                 <h2>Titre de la vidéo</h2>
             </div>
             <!-- Ajoutez d'autre cartes video ici-->
