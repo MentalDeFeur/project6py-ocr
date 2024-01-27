@@ -7,8 +7,12 @@ body{
 header{
     background-color: #111;
     color: white;
+    overflow: hidden;
     padding: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }
 
 main{
@@ -34,3 +38,29 @@ footer{
     bottom: 0;
     width: 100%;
 }
+.logo{
+    float: left;
+}
+
+nav{
+    float: right;
+}
+nav ul{ 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+nav li{
+    display: inline-block;
+    margin-right: 20px;
+}
+nav a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding:  10px;
+    color: white;
+    align-items: center;
+}
+
