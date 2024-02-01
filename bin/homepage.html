@@ -9,21 +9,18 @@
 
 <script>
     const apiURL = "http://127.0.0.1:8000/"
-    const dataContainer = document.getElementById()
-    fetch (apiURL)
-        .then(response => {
-            if(!response.ok){
-                throw new Error('La requête a échoué avec le code de statut : ${reponse.status}');
-            }
-            return response.json();
-        })
+    
+    document.addEventListener("DOMContentLoaded",function(){
+        fetch(apiURL)
+        .then(reponse => response.json())
         .then(data => {
-            dataContainer.innerText = JSON,stringify(data, null,2);
+            //mettre les élements avec document.getElementById
+            document.getElementById('video-card').innerHTML = '';
         })
-
         .catch(error => {
-            console.error("Une erreur s'est produite lors de la requête à l'API :",error.message);
+            console.error("Erreur lors de la récupération de l'API",error)
         });
+    });
 </script>
 
 
@@ -41,8 +38,6 @@
         <section class="carousel">
             <!--Carrousel de vidéos-->
             <div class="video-card">
-                <img id="video" src="video-thumbnail.jpg" alt="Video Thumbnail">
-                <h2>Titre de la vidéo</h2>
             </div>
             <!-- Ajoutez d'autre cartes video ici-->
         </section>
