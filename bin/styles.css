@@ -5,7 +5,7 @@ body{
 }
 
 header{
-    background-color: #111;
+    background-color: #69c;
     color: white;
     overflow: hidden;
     padding: 20px;
@@ -30,7 +30,7 @@ main{
 }
 
 footer{
-    background-color: #111;
+    background-color: #69c;
     color: white;
     text-align: center;
     padding: 10px;
@@ -40,6 +40,8 @@ footer{
 }
 .logo{
     float: left;
+    width: 100px;
+    height: auto;
 }
 
 nav{
