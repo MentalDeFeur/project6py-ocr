@@ -1,27 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width ,initial-scale= 1.0">
     <title>JustStreamIt</title>
+    <script type="text/javascript" src="app.js"></script>
 </head>
-
-<script>
-    const apiURL = "http://127.0.0.1:8000/"
-    
-    document.addEventListener("DOMContentLoaded",function(){
-        fetch(apiURL)
-        .then(reponse => response.json())
-        .then(data => {
-            //mettre les élements avec document.getElementById
-            document.getElementById('video-card').innerHTML = '';
-        })
-        .catch(error => {
-            console.error("Erreur lors de la récupération de l'API",error)
-        });
-    });
-</script>
 
 
 <body>
@@ -43,8 +28,7 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Netflix Clone</p>
+        <p>2024 JustStreamIt</p>
     </footer>
-    <script src="app.js"></script>
 </body>
 </html>
