@@ -24,9 +24,15 @@ main{
     overflow-x: auto;
 }
 
-.video-card{
-    margin-right: 20px;
-    cursor: pointer;
+.carousel-items{
+    display: flex;
+    overflow-x: scroll;
+    padding: 1rem 0;
+}
+
+.carousel-item{
+    flex: 1 0 450px;
+    margin-left: 1rem;
 }
 
 footer{
