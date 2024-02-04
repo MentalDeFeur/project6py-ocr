@@ -36,3 +36,10 @@ nav .gauche .onglets p{
 }
 
 
+footer{
+    background-color: #69c;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
