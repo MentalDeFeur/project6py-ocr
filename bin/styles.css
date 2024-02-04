@@ -4,71 +4,35 @@ body{
     padding: 0;
 }
 
-header{
+/*Barre de navigation */
+nav{
     background-color: #69c;
     color: white;
     overflow: hidden;
-    padding: 20px;
+    padding: 0 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    flex-wrap: wrap;
 }
 
-main{
-    padding: 20px;
-}
-
-.carousel{
+nav .gauche{
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
 }
 
-.carousel-items{
+nav .gauche img{
+    padding-top: 5px;
+}
+
+nav .gauche .onglets{
     display: flex;
-    overflow-x: scroll;
-    padding: 1rem 0;
+    flex-wrap: wrap;
+    margin-left: 30px;
+}
+nav .gauche .onglets p{
+    margin-left: 20px;
+    cursor: pointer;
 }
 
-.carousel-item{
-    flex: 1 0 450px;
-    margin-left: 1rem;
-}
-
-footer{
-    background-color: #69c;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-.logo{
-    float: left;
-    width: 100px;
-    height: auto;
-}
-
-nav{
-    float: right;
-}
-nav ul{ 
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-nav li{
-    display: inline-block;
-    margin-right: 20px;
-}
-nav a{
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    padding:  10px;
-    color: white;
-    align-items: center;
-}
 
