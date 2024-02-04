@@ -24,3 +24,5 @@ function ajouterMeilleursFilmsSite(){
         console.log(error.message)
     });
 }
+
+ajouterMeilleursFilmsSite()
