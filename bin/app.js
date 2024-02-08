@@ -3,21 +3,26 @@ let triparvotes = "?sort_by=-votes,-imdb_score";
 
 function ajouterMeilleursFilmsSite(){
 
-    let imageFilm = document.getElementsByClassName('image-film');
-    let titre = document.getElementsByClassName('titre')
-    let filmDescription = document.getElementsByClassName('description');
-    let boutonInfo = document.getElementsByClassName('boutoninfo');
+    var imageFilm = document.getElementsByClassName('image-film');
+    var image = document.createElement('img');
+    var titre = document.getElementsByClassName('titre')
+    var filmDescription = document.getElementsByClassName('description');
+    var boutonInfo = document.getElementsByClassName('boutoninfo');
 
     fetch(url+triparvotes)
     .then(reponse=>reponse.json())
     .then(data =>{
-                imageFilm.src = data["results"][0]["image_url"];
+                image.src = data["results"][0]["image_url"];
                 titre.innerHTML = data["results"][0]["title"];
 
                 fetch(data["results"][0]["url"])
                     .then(response => response.json())
                     .then(data =>
-                            {filmDescription.innerHTML = data["description"]})
+                            {
+                                console.info(image)
+                                imageFilm.appendChild(image);
+                                filmDescription.innerHTML = data["description"];
+                            })
             })
     .catch(error =>{ 
         console.log(error.message)

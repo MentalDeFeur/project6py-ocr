@@ -39,7 +39,11 @@ nav .gauche .onglets p{
 footer{
     background-color: #69c;
     color: white;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    width: 100%;
+    bottom: 0
 }
