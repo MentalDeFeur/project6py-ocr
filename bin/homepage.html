@@ -5,16 +5,15 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width ,initial-scale= 1.0">
     <title>JustStreamIt</title>
-    <script src="app.js"></script>
 </head>
 
 
 <body>     
     <!--Barre de navigation-->
         <nav>
-            <div class="gauche">
-                <img class="logo" src="logo.png" alt="logosite" height="60"/>
-                <div class="onglets">
+            <div id="gauche">
+                <img id="logo" src="logo.png" alt="logosite" height="60"/>
+                <div id="onglets">
                     <p>Accueil</p>
                     <p>Catégories</p>
                 </div>
@@ -23,17 +22,18 @@
     <!--Fin de la barre de navigation-->
     
     <!--Caroussel-->
-        <section class="meilleur">
-            <div class="couverture">
+        <section id="meilleur">
+            <div id="couverture">
+
             </div>
-            <div class="meilleur-film">
-                <h1 class="titre"></h1>
+            <div id="meilleur-film">
+                <h1 id="titre"></h1>
             </div>
-            <div class="bouton">
-                <button class="boutoninfo">Plus d'infos</button>
+            <div id="bouton">
+                <button id="boutoninfo">Plus d'infos</button>
             </div>
-            <div class="description-film">
-                <p class="description"></p>
+            <div id="description-film">
+                <p id="description"></p>
             </div>
         </section>
     <!--Fin de carroussel-->
@@ -41,5 +41,7 @@
     <footer>
         <p>2024 JustStreamIt</p>
     </footer>
+    
+    <script src="app.js"></script>
 </body>
 </html>

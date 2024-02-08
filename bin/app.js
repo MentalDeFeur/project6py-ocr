@@ -1,32 +1,20 @@
-var url = "http://127.0.0.1:8000/api/v1/titles/";
-let triparvotes = "?sort_by=-votes,-imdb_score";
+var imageFilm = document.getElementById('couverture');
+var image = document.createElement('img');
+var titre = document.getElementById('titre')
+var filmDescription = document.getElementById('description');
+var boutonInfo = document.getElementById('boutoninfo');
 
-function ajouterMeilleursFilmsSite(){
-
-    var imageFilm = document.getElementsByClassName('image-film');
-    var image = document.createElement('img');
-    var titre = document.getElementsByClassName('titre')
-    var filmDescription = document.getElementsByClassName('description');
-    var boutonInfo = document.getElementsByClassName('boutoninfo');
-
-    fetch(url+triparvotes)
-    .then(reponse=>reponse.json())
-    .then(data =>{
-                image.src = data["results"][0]["image_url"];
-                titre.innerHTML = data["results"][0]["title"];
-
-                fetch(data["results"][0]["url"])
-                    .then(response => response.json())
-                    .then(data =>
-                            {
-                                console.info(image)
-                                imageFilm.appendChild(image);
-                                filmDescription.innerHTML = data["description"];
-                            })
-            })
-    .catch(error =>{ 
-        console.log(error.message)
-    });
+async function fetchMeilleursFilmsSite(url,triparvotes){
+    const response = await fetch(url+triparvotes);
+    const result = await response.json();
+    image.src = result["results"][0]["image_url"];
+    imageFilm.appendChild(this.image);
 }
 
-ajouterMeilleursFilmsSite()
+function displayMeilleursFilmsSite(){
+    let url = "http://127.0.0.1:8000/api/v1/titles/";
+    let triparvotes = "?sort_by=-votes,-imdb_score";
+    fetchMeilleursFilmsSite(url,triparvotes);
+}
+
+displayMeilleursFilmsSite();
