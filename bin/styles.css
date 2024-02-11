@@ -47,3 +47,21 @@ footer{
     width: 100%;
     bottom: 0
 }
+
+#meilleur{
+    width: 100%;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    background-image: url("background.jpg") ;
+    color : white;
+}
+
+img{
+    margin : 30px;
+}
+
+#bouton{
+    position: absolute;
+    bottom: 165px;
+}
