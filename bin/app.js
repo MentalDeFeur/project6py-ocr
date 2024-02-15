@@ -23,6 +23,7 @@ async function fetchMeilleursFilmsSite(url,triparvotes){
     meilleurFilm.appendChild(this.fVotes);
 }
 
+
 function displayMeilleursFilmsSite(){
     let url = "http://127.0.0.1:8000/api/v1/titles/";
     let triparvotes = "?sort_by=-votes,-imdb_score";
