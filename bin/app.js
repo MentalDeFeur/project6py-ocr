@@ -1,33 +1,61 @@
 var imageFilm = document.getElementById('couverture');
 var meilleurFilm = document.getElementById('meilleur-film');
-var image = document.createElement('img');
-var tFilm = document.createElement('h1')
+var carousel = document.getElementById('carousel')
+var carouselInner = document.getElementById('carousel-inner')
+var prevBtn = document.getElementById('prev-btn');
+var nextBtn = document.getElementById('next-btn');
 var titre = document.getElementById('titre');
 var filmDes = document.getElementById('description');
+var boutonInfo = document.getElementById('boutoninfo');
+
+var image = document.createElement('img');
+var tFilm = document.createElement('h1')
 var fVotes = document.createElement('p');
 var annee = document.createElement('p');
 
-var boutonInfo = document.getElementById('boutoninfo');
-
 async function fetchMeilleursFilmsSite(url,triparvotes){
-    const response = await fetch(url+triparvotes);
-    const result = await response.json();
-    console.log(result)
-    image.src = result["results"][0]["image_url"];
-    tFilm.innerText = "Titre du film : "+result["results"][0]["title"];
-    fVotes.innerText = "Nombre de votes : "+result["results"][0]["votes"];
-    annee.innerText = "Année : "+result["results"][0]["year"];
-    imageFilm.appendChild(this.image);
-    meilleurFilm.appendChild(this.tFilm);
-    meilleurFilm.appendChild(this.annee);
-    meilleurFilm.appendChild(this.fVotes);
-}
+         const response = await fetch(url+triparvotes);
+         const result = await response.json();
+         return result;
+    }
 
-
-function displayMeilleursFilmsSite(){
+async function renderCarousel(){
     let url = "http://127.0.0.1:8000/api/v1/titles/";
-    let triparvotes = "?sort_by=-votes,-imdb_score";
-    fetchMeilleursFilmsSite(url,triparvotes);
+    let triparvotes = "?sort_by=-votes,-imdb_score";    
+    const datas = await fetchMeilleursFilmsSite(url,triparvotes);
+    renderCarousel.innerHTML = "";
+    number = 0;
+
+    for (data in datas.results){
+            console.log();
+
+            image.src = datas["results"][data]['image_url'];
+            image.alt = 'Image ${ data }';
+
+            image.classList.add("active");
+            meilleurFilm.appendChild(image);    
+    }
 }
 
-displayMeilleursFilmsSite();
+prevBtn.addEventListener("click",function(){
+    updateCarousel();
+});
+
+nextBtn.addEventListener("click",function(){
+    updateCarousel();
+});
+
+function updateCarousel(){
+    const images = Array.from(carouselInner.children);
+    for (image in images){
+        if (index === currentIndex){
+            image.classList.add("active");
+        } else{
+            image.classList.remove("active");
+        }
+    }
+}
+
+renderCarousel();
+
+
