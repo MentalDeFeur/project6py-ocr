@@ -101,3 +101,7 @@ img{
     flex: 0 0 100%;
     max-width: 100%;
 }
+
+.carousel-item{
+    margin: 30px 130px 30px;
+}
