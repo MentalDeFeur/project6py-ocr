@@ -11,54 +11,49 @@ var tFilm = document.createElement('h1')
 var fVotes = document.createElement('p');
 var annee = document.createElement('p');
 
+var position = 0;
+
+var dataList = []
+
 async function fetchMeilleursFilmsSite(url,triparvotes){
     const response = await fetch(url+triparvotes);
     const result = await response.json();
     return result;
 }
 
-async function renderCarousel(){
+async function renderCarousel(number){
     let url = "http://127.0.0.1:8000/api/v1/titles/";
     let triparvotes = "?sort_by=-votes,-imdb_score";    
-    const datas = await fetchMeilleursFilmsSite(url,triparvotes);
-    renderCarousel.innerHTML = "";
+    dataList = await fetchMeilleursFilmsSite(url,triparvotes);
 
-    for (data in datas.results){
-            image.src = datas["results"][data]['image_url'];
-            image.alt = 'Image ${ data }';
-            image.className = "carousel-item";
-            image.classList.add("active");
-            carouselInner.appendChild(image);
-    }     
+    console.log(dataList);
+
+    image.src = dataList["results"][number]['image_url'];
+    image.alt = 'Image'+number;
+    image.className = "carousel-item";
+    image.classList.add("active");
+    carouselInner.appendChild(image);   
 }
 
+renderCarousel(0);
 
 function updateCarousel(param){
+
     if (param == 0){
-        const carouselSlider = document.querySelector("#carousel").offsetWidth;
-        const carouselContent = document.querySelector("#carousel-inner");
-        carouselInner.scrollLeft -= carouselSlider;
-        const scrollLeft = carouselContent.scrollLeft;
-        const itemsSlider = carouselInner.querySelectorAll(".carousel-item")
-
-        if (scrollLeft == 0){
-            carouselContent.scrollLeft = carouselSlider * (itemsSlider.length - 1);
+            position--;
+            renderCarousel(position);
         }
-    }
-
     if(param == 1){
-        const carouselSlider = document.querySelector("#carousel").offsetWidth;
-        const carouselContent = document.querySelector("#carousel-inner");
-        carouselInner.scrollLeft += carouselSlider;
-        const scrollLeft = carouselContent.scrollLeft;
-        const itemsSlider = carouselInner.querySelectorAll(".carousel-item")
-
-        if (scrollLeft == 0){
-            carouselContent.scrollLeft = carouselSlider * (itemsSlider.length - 1);
+        if (position < 0 || position > dataList['results'].length){
+            position = 0;
+        }else{
+            position++;
+            renderCarousel(position);
         }
     }
+
 }
 
-renderCarousel();
+
 
 

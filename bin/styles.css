@@ -21,7 +21,7 @@ nav #gauche{
     flex-wrap: wrap;
 }
 
-nav #gauche img{
+nav #gauche #logo{
     padding-top: 5px;
 }
 
@@ -49,16 +49,8 @@ footer{
 }
 
 #meilleur{
-    width: 100%;
-    position: absolute;
-    display: grid;
-    grid-template-columns: repeat(5,auto);
+    overflow: hidden;
     background-image: url("background.jpg") ;
-    color : white;
-}
-
-img{
-    margin : 30px;
 }
 
 #prev-btn,#next-btn{
@@ -87,21 +79,17 @@ img{
 }
 
 #carousel{
-    display: flex;
-    width: 100%;
-    overflow: hidden;
+    position: relative;
+    margin: 20px 40px 20px;
 }
 
 #carousel-inner{
     display: flex;
-    transition: transform 0.5s ease;
+    overflow: hidden;
+    height: vh;
+    flex-wrap: nowrap;
+    position : relative;
+    margin: 20px 150px 20px;
 }
 
-#carousel-inner > div{
-    flex: 0 0 100%;
-    max-width: 100%;
-}
 
-.carousel-item{
-    margin: 30px 130px 30px;
-}
