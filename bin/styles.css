@@ -50,7 +50,6 @@ footer{
 
 #meilleur{
     overflow: hidden;
-    background-image: url("background.jpg") ;
 }
 
 #prev-btn,#next-btn{
@@ -85,11 +84,21 @@ footer{
 
 #carousel-inner{
     display: flex;
-    overflow: hidden;
-    height: vh;
+    overflow-x : auto;
     flex-wrap: nowrap;
     position : relative;
-    margin: 20px 150px 20px;
+    margin: 10px 150px 10px;
+    width: auto;
+}
+
+#carousel-inner .image-carousel{
+    margin-right: 10px;
+    width: auto;
+}
+
+.image-carousel{
+    width: auto;
+    margin: 30px;
 }
 
 
