@@ -35,7 +35,7 @@ async function renderCarousel(){
 
 function executeModal(id){
     let modal = document.getElementById("modal");
-    let span = document.getElementsByClassName("close");
+    let span = document.getElementById("close");
     fetchModalData(id);
 
     modal.style.display = "block";
@@ -50,15 +50,20 @@ async function fetchModalData(id){
     const response = await fetch(url+id);
     const result = await response.json();
     
+    document.getElementById("director").textContent = result["directors"];
     document.getElementById("cover").src = result["image_url"];
-    document.getElementById("title").innerHTML = result["title"];
-    document.getElementById("year").innerHTML = result["year"];
-    document.getElementById("duration").innerHTML = result["duration"];
-    document.getElementById("genres").innerHTML = result["genres"];
-    document.getElementById("imdb").innerHTML = result["imdb_score"]+" / 10";
-    document.getElementById("director").innerHTML = result["actors"]+ "...";
-    document.getElementById("country").innerHTML = result["countries"];
-    document.getElementById("rating").innerHTML = result["rated"];
+    document.getElementById("title").textContent = result["title"];
+    document.getElementById("resume").textContent = result["description"];
+    document.getElementById("year").textContent = result["year"];
+    document.getElementById("duration").textContent = result["duration"];
+    document.getElementById("genres").textContent = result["genres"];
+    document.getElementById("imdb").textContent = result["imdb_score"]+" / 10";
+    document.getElementById("actors").textContent = result["actors"]+ "...";
+    document.getElementById("country").textContent = result["countries"];
+    document.getElementById("rating").textContent = result["rated"];
+    document.getElementById("date").textContent = result["date_published"];
+    document.getElementById("avg_vote").textContent = result["avg_vote"];
+
 }
 
 renderCarousel();
