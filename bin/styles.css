@@ -42,10 +42,9 @@ footer{
     padding: 20px;
     text-align: center;
     position: fixed;
-    overflow: hidden;
     display: flex;
     width: 100%;
-    bottom: 0
+    bottom: 0;
 }
 
 #meilleur{
@@ -102,52 +101,30 @@ footer{
 }
 
 .modal{
-    background-color: rgba(102, 153, 204,0.4); 
     display: none;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-.content{
+    position: relative;
+    padding: center;
+    border: none;
+    width: 800px;
+    height: 600px;
+    overflow: auto;
     background-color: rgba(102, 153, 204,0.4); 
-    border-radius: 10px;
-    margin: 5% auto;
-    max-width: 1500px;
-    min-height: 350px;
-    padding: 30px 30px 60px 30px;
-    width: 100%;
 }
 .image{
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
-    float: left;
-    height: 340px;
-    margin-right: 120px;
-    margin-top: 1%;
+    box-shadow: rgba(0,0,0,0.4);
+    width : 30%;
 }
 .content h3{
     display: inline-block;
     font-size: 24px;
-
-}
-.movie-info{
-    font-size: 15px;
-    margin-left: 30px;
-    margin-right: 40%;
-
 }
 .metadata{
     font-weight: bold;
 
 }
-.title{
-
-}
-
 #year,#rating,#duration,#imdb,#director,#cast,#country,#box-office,#resume{
-       display: inline;
-       line-height: 150%;
+    bottom: 10px;
 }
 
 
