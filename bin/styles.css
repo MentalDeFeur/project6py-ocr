@@ -86,13 +86,15 @@ footer{
     overflow-x : auto;
     flex-wrap: nowrap;
     position : relative;
-    margin: 10px 150px 10px;
+    justify-content: center;
+    align-items: center;
+    margin: center;
     width: auto;
 }
 
 #carousel-inner .image-carousel{
-    margin-right: 10px;
     width: auto;
+    
 }
 
 .image-carousel{
@@ -127,4 +129,25 @@ footer{
     bottom: 10px;
 }
 
+h2{
+    text-align: center;
+    margin-top: 50px;
+}
 
+#prevButton{
+    left: 30px;
+}
+
+#nextButton{
+    right: 30px;
+}
+
+#prevButton,#nextButton{
+    position: absolute;
+    bottom: 165px;
+    top:50%;
+    transform: translateY(-50%);
+    color: black;
+    border: none;
+    cursor: pointer;
+}

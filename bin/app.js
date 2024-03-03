@@ -17,10 +17,14 @@ async function fetchMeilleursFilmsSite(){
 
 async function renderCarousel(){
         dataList = await fetchMeilleursFilmsSite();
-
         console.log(dataList);
-
         let number = 0;
+
+        const h2 = document.createElement('h2');
+        h2.textContent = "Films les mieux notés";
+        meilleurFilm.parentNode.insertBefore(h2,meilleurFilm);
+
+        
 
         for (data of dataList['results']){
             const image = document.createElement('img');
