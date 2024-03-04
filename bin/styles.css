@@ -104,14 +104,18 @@ footer{
 
 .modal{
     display: none;
-    position: relative;
+    top: 50%;
+    position: absolute;
     padding: center;
     border: none;
     width: 800px;
     height: 600px;
     overflow: auto;
-    background-color: rgba(102, 153, 204,0.4); 
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(102, 153, 204, 0.800); 
 }
+
 .image{
     border-radius: 10px;
     box-shadow: rgba(0,0,0,0.4);

@@ -105,7 +105,7 @@ async function renderCarousel(){
         number = 0;
 
         const h24 = document.createElement('h2');
-        h24.textContent = "History";
+        h24.textContent = "Histoire";
         categorie3.parentNode.insertBefore(h24,categorie3);
 
         for (data of dataList4['results']){
@@ -123,6 +123,7 @@ async function renderCarousel(){
 function executeModal(id){
     let modal = document.getElementById("modal");
     let span = document.getElementById("close");
+    let backdrop = document.querySelector(".dialog-backdrop");
     fetchModalData(id);
 
     modal.style.display = "block";
