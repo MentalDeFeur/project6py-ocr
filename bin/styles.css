@@ -108,6 +108,7 @@ footer{
     position: absolute;
     padding: center;
     border: none;
+    border-radius: 10px;
     width: 800px;
     height: 600px;
     overflow: auto;
@@ -155,3 +156,12 @@ h2{
     border: none;
     cursor: pointer;
 }
+
+dialog::backdrop{
+    background: var(--color-backdrop);
+}
+
+:root{
+    --color-backdrop: black;
+}
+
