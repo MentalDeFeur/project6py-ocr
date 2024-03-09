@@ -11,6 +11,18 @@ var carousel2 = document.getElementById('carousel2');
 var categorie3 = document.getElementById('categorie3');
 var carousel3 = document.getElementById('carousel3');
 
+var prevButton = document.getElementById("prevButton");
+var nextButton = document.getElementById("nextButton");
+
+var prevButton2 = document.getElementById("prevButton2");
+var nextButton2 = document.getElementById("nextButton2");
+
+var prevButton3 = document.getElementById("prevButton3");
+var nextButton3 = document.getElementById("nextButton3");
+
+var prevButton4 = document.getElementById("prevButton4");
+var nextButton4 = document.getElementById("nextButton4");
+
 var carouselInner = document.getElementById('carousel-inner');
 var carouselInner2 = document.getElementById('carousel-inner1');
 var carouselInner3 = document.getElementById('carousel-inner2');
@@ -18,39 +30,22 @@ var carouselInner4 = document.getElementById('carousel-inner3');
 var filmDes = document.getElementById('description');
 var boutonInfo = document.getElementById('boutoninfo');
 var position = 0;
+var i = 0;
 
-let url = "http://127.0.0.1:8000/api/v1/titles/";
+var url = "http://127.0.0.1:8000/api/v1/titles/";
 
-async function fetchMeilleursFilmsSite(){
-    let triparvotes = "?sort_by=-votes,-imdb_score"; 
-    const response = await fetch(url+triparvotes);
-    const result = await response.json();
-    return result;
-}
-
-async function fetchCategorieOneSite(){
-    const response = await fetch("http://127.0.0.1:8000/api/v1/titles/?genre=drama&sort_by=-imdb_score");
-    const result = await response.json();
-    return result;
-}
-
-async function fetchCategorieTwoSite(){
-    const response = await fetch("http://127.0.0.1:8000/api/v1/titles/?genre=romance&sort_by=-imdb_score");
-    const result = await response.json();
-    return result;
-}
-
-async function fetchCategorieThreeSite(){
-    const response = await fetch("http://127.0.0.1:8000/api/v1/titles/?genre=history&sort_by=-imdb_score");
+async function fetchSite(lien){
+    const response = await fetch(lien);
     const result = await response.json();
     return result;
 }
 
 async function renderCarousel(){
-        dataList = await fetchMeilleursFilmsSite();
-        dataList2 = await fetchCategorieOneSite();
-        dataList3 = await fetchCategorieTwoSite();
-        dataList4 = await fetchCategorieThreeSite();
+
+        dataList = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score");
+        dataList2 = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?genre=drama&sort_by=-imdb_score");
+        dataList3 = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?genre=romance&sort_by=-imdb_score");
+        dataList4 = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?genre=history&sort_by=-imdb_score");
 
 
         var number = 0;
@@ -68,6 +63,9 @@ async function renderCarousel(){
             image.setAttribute('onClick',`executeModal("${dataList["results"][number]["id"]}")`);
             carouselInner.appendChild(image);
             number = number+1;
+            if(number == 4){
+                break;
+            }
         }  
 
         number = 0;
@@ -84,6 +82,9 @@ async function renderCarousel(){
             image.setAttribute('onClick',`executeModal("${dataList2["results"][number]["id"]}")`);
             carouselInner2.appendChild(image);
             number = number+1;
+            if(number == 4){
+                break;
+            }
         }  
 
         number = 0;
@@ -100,6 +101,9 @@ async function renderCarousel(){
             image.setAttribute('onClick',`executeModal("${dataList3["results"][number]["id"]}")`);
             carouselInner3.appendChild(image);
             number = number+1;
+            if(number == 4){
+                break;
+            }
         }  
 
         number = 0;
@@ -116,14 +120,17 @@ async function renderCarousel(){
             image.setAttribute('onClick',`executeModal("${dataList4["results"][number]["id"]}")`);
             carouselInner4.appendChild(image);
             number = number+1;
+            if(number == 4){
+                break;
+            }
         } 
 
 }
 
 function executeModal(id){
+    console.log(id);
     let modal = document.getElementById("modal");
     let span = document.getElementById("close");
-    let backdrop = document.querySelector(".dialog-backdrop");
     fetchModalData(id);
 
     modal.style.display = "block";
@@ -153,5 +160,101 @@ async function fetchModalData(id){
     document.getElementById("avg_vote").textContent = result["avg_vote"];
 
 }
+
+async function buttonAction(number){
+
+    dataList == "";
+
+    var numberImg = 0;
+
+    if (number == 1 || number == 3 || number == 5 || number == 7){
+        position = position - 1;
+        if (position < 0){
+            position = 0;
+        }
+    }
+    else if (number == 2 || number == 4 || number == 6 || number == 8){
+        position = position + 1;
+        if (position > dataList["results"].length){
+            position = 0;
+        }
+    }
+    else{
+        position = 0;
+    }
+
+    if (number == 1 || number == 2){
+        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?page=${position}&sort_by=-votes%2C-imdb_score`);
+                while (numberImg > 4){
+                    var image = carouselInner.getElementsByTagName("img")[numberImg];
+                    carouselInner.removeChild(image);
+                    numberImg++;
+                }
+                numberImg = 0;
+                for (data of dataList['results']){
+                    const image = document.createElement('img');
+                    image.src = data.image_url;
+                    image.alt = "Image";
+                    image.className = "image-carousel";
+                    image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
+                    carouselInner.appendChild(image);
+                    numberImg++;
+                    if(numberImg == 4){
+                        break;
+                    }
+            }
+                numberImg=0;
+    }
+    if (number == 3 || number == 4){
+        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?genre=drama&page=${position}&sort_by=-imdb_score`);
+            for (data of dataList['results']){
+                        const image = document.createElement('img');
+                        image.src = data.image_url;
+                        image.alt = "Image";
+                        image.className = "image-carousel";
+                        image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
+                        carouselInner2.appendChild(image);
+                        numberImg++;
+                        if(numberImg == 4){
+                            break;
+                        }
+                    }
+                    numberImg=0;
+    }
+    if (number == 5 || number == 6){
+        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?genre=romance&page=${position}&sort_by=-imdb_score`);
+            for (data of dataList['results']){
+                        const image = document.createElement('img');
+                        image.src = data.image_url;
+                        image.alt = "Image";
+                        image.className = "image-carousel";
+                        image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
+                        carouselInner3.appendChild(image);
+                        numberImg++;
+                        if(numberImg == 4){
+                            break;
+                        }
+                    }
+                    numberImg=0;  
+    }
+    if (number == 7 || number == 8){
+        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?genre=history&page${position}&sort_by=-imdb_score`);
+            for (data of dataList['results']){
+                        const image = document.createElement('img');
+                        image.src = data.image_url;
+                        image.alt = "Image";
+                        image.className = "image-carousel";
+                        image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
+                        carouselInner4.appendChild(image);
+                        numberImg++;
+                        if(numberImg == 4){
+                            break;
+                        }
+                    }
+            numberImg=0;
+    }
+
+}
+
 
 renderCarousel();
