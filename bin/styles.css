@@ -77,6 +77,7 @@ footer{
 }
 
 #carousel,#carousel1,#carousel2,#carousel3{
+    display: grid;
     position: relative;
     margin: 20px 40px 20px;
 }
@@ -94,12 +95,10 @@ footer{
 
 #carousel-inner .image-carousel,#carousel-inner1 .image-carousel2,#carousel-inner2 .image-carousel3,#carousel-inner3 .image-carousel4{
     width: auto;
-    
 }
 
 .image-carousel,.image-carousel2,.image-carousel3,.image-carousel4{
     width: auto;
-    margin: 30px;
 }
 
 .modal{
@@ -151,17 +150,14 @@ h2{
     position: absolute;
     bottom: 165px;
     top:50%;
-    transform: translateY(-50%);
-    color: black;
+    height: 60px;
+    width: 60px;
+    color: #fff;
     border: none;
+    outline: none;
+    background: #000;
+    font-size: 2.2rem;
     cursor: pointer;
+    border-radius: 50%;
+    transform: translateY(-50%);
 }
-
-dialog::backdrop{
-    background: var(--color-backdrop);
-}
-
-:root{
-    --color-backdrop: black;
-}
-

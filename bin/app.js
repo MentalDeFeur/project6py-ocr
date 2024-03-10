@@ -1,5 +1,5 @@
 var imageFilm = document.getElementById('couverture');
-var meilleurFilm = document.getElementById('meilleur');
+var categorie = document.getElementById('meilleur');
 var carousel = document.getElementById('carousel');
 
 var categorie1 = document.getElementById('categorie1');
@@ -40,20 +40,15 @@ async function fetchSite(lien){
     return result;
 }
 
-async function renderCarousel(){
 
-        dataList = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score");
-        dataList2 = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?genre=drama&sort_by=-imdb_score");
-        dataList3 = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?genre=romance&sort_by=-imdb_score");
-        dataList4 = await fetchSite("http://127.0.0.1:8000/api/v1/titles/?genre=history&sort_by=-imdb_score");
+async function renderCarousel(lien,carouselInner,h2,page,categorie,nomCate){
 
+        var dataList = await fetchSite(lien);
 
         var number = 0;
 
-        const h2 = document.createElement('h2');
-        h2.textContent = "Films les mieux notés";
-        meilleurFilm.parentNode.insertBefore(h2,meilleurFilm);
-
+        h2.textContent = nomCate;
+        categorie.parentNode.insertBefore(h2,categorie);
 
         for (data of dataList['results']){
             const image = document.createElement('img');
@@ -70,62 +65,75 @@ async function renderCarousel(){
 
         number = 0;
 
-        const h22 = document.createElement('h2');
-        h22.textContent = "Drama";
-        categorie1.parentNode.insertBefore(h22,categorie1);
+    }
 
-        for (data of dataList2['results']){
-            const image = document.createElement('img');
-            image.src = data.image_url;
-            image.alt = "Image";
-            image.className = "image-carousel2";
-            image.setAttribute('onClick',`executeModal("${dataList2["results"][number]["id"]}")`);
-            carouselInner2.appendChild(image);
-            number = number+1;
-            if(number == 4){
+async function initCarousel(){
+    var page = 1;
+
+    const h2 = document.createElement('h2');
+    const h22 = document.createElement('h2');
+    const h23 = document.createElement('h2');
+    const h24 = document.createElement('h2');
+
+    dataList = `http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`;
+    dataList2 = `http://127.0.0.1:8000/api/v1/titles/?genre=drama&sort_by=-imdb_score`;
+    dataList3 = `http://127.0.0.1:8000/api/v1/titles/?genre=romance&sort_by=-imdb_score`;
+    dataList4 = `http://127.0.0.1:8000/api/v1/titles/?genre=history&sort_by=-imdb_score`;
+
+
+    var dataListFinal = await fetchSite(dataList);
+    var dataListFinal2 = await fetchSite(dataList2);
+    var dataListFinal3 = await fetchSite(dataList3);
+    var dataListFinal4 = await fetchSite(dataList4);
+
+    for (data in dataListFinal){
+            dataListwPage = `http://127.0.0.1:8000/api/v1/titles/?page=${page}&sort_by=-votes,-imdb_score`;
+            renderCarousel(dataListwPage,carouselInner,h2,page,categorie,"Les films les mieux notés");
+            page++;
+
+            if (page == 10){
+                break;
+                
+            }
+        }
+
+    page = 1;
+
+    
+    for(data2 in dataListFinal2){
+            dataList2wPage = `http://127.0.0.1:8000/api/v1/titles/?page=${page}&genre=drama&sort_by=-imdb_score`;
+            renderCarousel(dataList2wPage,carouselInner2,h22,page,categorie1,"Drama");
+            page++;
+            if (page==10){
                 break;
             }
-        }  
-
-        number = 0;
-
-        const h23 = document.createElement('h2');
-        h23.textContent = "Romance";
-        categorie2.parentNode.insertBefore(h23,categorie2);
-
-        for (data of dataList3['results']){
-            const image = document.createElement('img');
-            image.src = data.image_url;
-            image.alt = "Image";
-            image.className = "image-carousel3";
-            image.setAttribute('onClick',`executeModal("${dataList3["results"][number]["id"]}")`);
-            carouselInner3.appendChild(image);
-            number = number+1;
-            if(number == 4){
+        }
+    page = 1;
+    
+    for(data3 in dataListFinal3){
+            dataList3wPage = `http://127.0.0.1:8000/api/v1/titles/?page=${page}&genre=romance&sort_by=-imdb_score`;
+            renderCarousel(dataList3wPage,carouselInner3,h23,page,categorie2,"Romance");
+            page++;
+            if(page==10){
                 break;
             }
-        }  
+        }
 
-        number = 0;
-
-        const h24 = document.createElement('h2');
-        h24.textContent = "Histoire";
-        categorie3.parentNode.insertBefore(h24,categorie3);
-
-        for (data of dataList4['results']){
-            const image = document.createElement('img');
-            image.src = data.image_url;
-            image.alt = "Image";
-            image.className = "image-carousel4";
-            image.setAttribute('onClick',`executeModal("${dataList4["results"][number]["id"]}")`);
-            carouselInner4.appendChild(image);
-            number = number+1;
-            if(number == 4){
+    page = 1;
+    
+    for (data4 in dataListFinal4){
+            dataList4wPage = `http://127.0.0.1:8000/api/v1/titles/?page=${page}&genre=history&sort_by=-imdb_score`;
+            renderCarousel(dataList4wPage,carouselInner4,h24,page,categorie3,"History");
+            page++;
+            if(page==10){
                 break;
             }
-        } 
+        }
+
+    page = 1;
 
 }
+
 
 function executeModal(id){
     console.log(id);
@@ -161,100 +169,59 @@ async function fetchModalData(id){
 
 }
 
-async function buttonAction(number){
+prevButton.addEventListener("click",() => {
+    const direction = prevButton.id == "prevButton" ? -1 : 1;
+    const scrollAmount = carouselInner.clientWidth * direction;
+    carouselInner.scrollBy({left: scrollAmount,behavior: "smooth"});
 
-    dataList == "";
+});
+nextButton.addEventListener("click",() => {
+    const direction = 1;
+    const scrollAmount = carouselInner.clientWidth * direction;
+    carouselInner.scrollBy({left: scrollAmount,behavior: "smooth"});
 
-    var numberImg = 0;
+});
 
-    if (number == 1 || number == 3 || number == 5 || number == 7){
-        position = position - 1;
-        if (position < 0){
-            position = 0;
-        }
-    }
-    else if (number == 2 || number == 4 || number == 6 || number == 8){
-        position = position + 1;
-        if (position > dataList["results"].length){
-            position = 0;
-        }
-    }
-    else{
-        position = 0;
-    }
+prevButton2.addEventListener("click",() => {
+    const direction = prevButton2.id == "prevButton2" ? -1 : 1;
+    const scrollAmount = carouselInner2.clientWidth * direction;
+    carouselInner2.scrollBy({left: scrollAmount,behavior: "smooth"});
 
-    if (number == 1 || number == 2){
-        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?page=${position}&sort_by=-votes%2C-imdb_score`);
-                while (numberImg > 4){
-                    var image = carouselInner.getElementsByTagName("img")[numberImg];
-                    carouselInner.removeChild(image);
-                    numberImg++;
-                }
-                numberImg = 0;
-                for (data of dataList['results']){
-                    const image = document.createElement('img');
-                    image.src = data.image_url;
-                    image.alt = "Image";
-                    image.className = "image-carousel";
-                    image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
-                    carouselInner.appendChild(image);
-                    numberImg++;
-                    if(numberImg == 4){
-                        break;
-                    }
-            }
-                numberImg=0;
-    }
-    if (number == 3 || number == 4){
-        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?genre=drama&page=${position}&sort_by=-imdb_score`);
-            for (data of dataList['results']){
-                        const image = document.createElement('img');
-                        image.src = data.image_url;
-                        image.alt = "Image";
-                        image.className = "image-carousel";
-                        image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
-                        carouselInner2.appendChild(image);
-                        numberImg++;
-                        if(numberImg == 4){
-                            break;
-                        }
-                    }
-                    numberImg=0;
-    }
-    if (number == 5 || number == 6){
-        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?genre=romance&page=${position}&sort_by=-imdb_score`);
-            for (data of dataList['results']){
-                        const image = document.createElement('img');
-                        image.src = data.image_url;
-                        image.alt = "Image";
-                        image.className = "image-carousel";
-                        image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
-                        carouselInner3.appendChild(image);
-                        numberImg++;
-                        if(numberImg == 4){
-                            break;
-                        }
-                    }
-                    numberImg=0;  
-    }
-    if (number == 7 || number == 8){
-        dataList = await fetchSite(`http://127.0.0.1:8000/api/v1/titles/?genre=history&page${position}&sort_by=-imdb_score`);
-            for (data of dataList['results']){
-                        const image = document.createElement('img');
-                        image.src = data.image_url;
-                        image.alt = "Image";
-                        image.className = "image-carousel";
-                        image.setAttribute('onClick',`executeModal("${dataList["results"][numberImg]["id"]}")`);
-                        carouselInner4.appendChild(image);
-                        numberImg++;
-                        if(numberImg == 4){
-                            break;
-                        }
-                    }
-            numberImg=0;
-    }
+});
+nextButton2.addEventListener("click",() => {
+    const direction = 1;
+    const scrollAmount = carouselInner2.clientWidth * direction;
+    carouselInner2.scrollBy({left: scrollAmount,behavior: "smooth"});
 
-}
+});
+
+prevButton3.addEventListener("click",() => {
+    const direction = prevButton3.id == "prevButton3" ? -1 : 1;
+    const scrollAmount = carouselInner3.clientWidth * direction;
+    carouselInner3.scrollBy({left: scrollAmount,behavior: "smooth"});
+
+});
+nextButton3.addEventListener("click",() => {
+    const direction = 1;
+    const scrollAmount = carouselInner3.clientWidth * direction;
+    carouselInner3.scrollBy({left: scrollAmount,behavior: "smooth"});
+
+});
+
+prevButton4.addEventListener("click",() => {
+    const direction = prevButton4.id == "prevButton4" ? -1 : 1;
+    const scrollAmount = carouselInner4.clientWidth * direction;
+    carouselInner4.scrollBy({left: scrollAmount,behavior: "smooth"});
+
+});
+nextButton4.addEventListener("click",() => {
+    const direction = 1;
+    const scrollAmount = carouselInner4.clientWidth * direction;
+    carouselInner4.scrollBy({left: scrollAmount,behavior: "smooth"});
+
+});
 
 
-renderCarousel();
+
+
+initCarousel();
