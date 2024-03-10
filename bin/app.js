@@ -1,3 +1,7 @@
+var bestImgFilm = document.getElementById("imgBestFilm");
+var titreBestFilm = document.getElementById("titreBestFilm");
+var resume = document.getElementById("resume");
+
 var imageFilm = document.getElementById('couverture');
 var categorie = document.getElementById('meilleur');
 var carousel = document.getElementById('carousel');
@@ -40,6 +44,24 @@ async function fetchSite(lien){
     return result;
 }
 
+async function renderBestFilm(number){
+    var url = "http://127.0.0.1:8000/api/v1/titles/";
+    lien = `http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`;
+    var dataList = await fetchSite(lien);
+    bestImgFilm.src = dataList["results"][i].image_url;
+
+    var id = dataList["results"][number]["id"];
+
+    const response = await fetch(url+id);
+    const result = await response.json();
+
+    document.getElementById("resumeBestFilm").textContent = result["description"];
+    document.getElementById("titleBestFilm").textContent = result["title"]
+
+}
+
+renderBestFilm(0);
+
 
 async function renderCarousel(lien,carouselInner,h2,page,categorie,nomCate){
 
@@ -58,9 +80,6 @@ async function renderCarousel(lien,carouselInner,h2,page,categorie,nomCate){
             image.setAttribute('onClick',`executeModal("${dataList["results"][number]["id"]}")`);
             carouselInner.appendChild(image);
             number = number+1;
-            if(number == 4){
-                break;
-            }
         }  
 
         number = 0;

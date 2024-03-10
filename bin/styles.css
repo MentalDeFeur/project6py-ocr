@@ -94,11 +94,11 @@ footer{
 }
 
 #carousel-inner .image-carousel,#carousel-inner1 .image-carousel2,#carousel-inner2 .image-carousel3,#carousel-inner3 .image-carousel4{
-    width: auto;
+    width: calc(100%/6);
 }
 
 .image-carousel,.image-carousel2,.image-carousel3,.image-carousel4{
-    width: auto;
+    width: calc(100%/6);
 }
 
 .modal{
@@ -127,14 +127,13 @@ footer{
 }
 .metadata{
     font-weight: bold;
-
 }
 #year,#rating,#duration,#imdb,#director,#cast,#country,#box-office,#resume{
     bottom: 10px;
 }
 
 h2{
-    text-align: center;
+    text-align: left;
     margin-top: 50px;
 }
 
