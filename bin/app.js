@@ -1,6 +1,4 @@
 var bestImgFilm = document.getElementById("imgBestFilm");
-var titreBestFilm = document.getElementById("titreBestFilm");
-var resume = document.getElementById("resume");
 
 var imageFilm = document.getElementById('couverture');
 var categorie = document.getElementById('meilleur');
@@ -35,6 +33,8 @@ var filmDes = document.getElementById('description');
 var boutonInfo = document.getElementById('boutoninfo');
 var position = 0;
 var i = 0;
+var numberBestFilm = 1;
+var page = 1;
 
 var url = "http://127.0.0.1:8000/api/v1/titles/";
 
@@ -44,11 +44,12 @@ async function fetchSite(lien){
     return result;
 }
 
-async function renderBestFilm(number){
+async function renderBestFilm(link,number){
     var url = "http://127.0.0.1:8000/api/v1/titles/";
-    lien = `http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`;
+    lien = link;
     var dataList = await fetchSite(lien);
-    bestImgFilm.src = dataList["results"][i].image_url;
+
+    bestImgFilm.src = dataList["results"][number].image_url;
 
     var id = dataList["results"][number]["id"];
 
@@ -56,11 +57,39 @@ async function renderBestFilm(number){
     const result = await response.json();
 
     document.getElementById("resumeBestFilm").textContent = result["description"];
-    document.getElementById("titleBestFilm").textContent = result["title"]
+    document.getElementById("titreBestFilm").textContent = result["title"];
 
 }
 
-renderBestFilm(0);
+renderBestFilm(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`,0);
+
+
+document.getElementById("prevBest").addEventListener("click",function() {
+    try{
+        if (numberBestFilm<0){
+            numberBestFilm=0;
+        }
+            numberBestFilm--;
+            renderBestFilm(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`,numberBestFilm);
+    }
+    catch(TypeError){
+    }
+});
+document.getElementById("nextBest").addEventListener("click",function() {
+    try{
+        numberBestFilm++;
+        renderBestFilm(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`,numberBestFilm);
+        if(numberBestFilm > 4){
+            throw new Error();
+        }
+    }
+    catch(e){
+        numberBestFilm = 0;
+        var link = `http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes%2C-imdb_score`;
+        renderBestFilm(link,numberBestFilm);
+    }
+});
+
 
 
 async function renderCarousel(lien,carouselInner,h2,page,categorie,nomCate){
