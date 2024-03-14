@@ -64,34 +64,6 @@ async function renderBestFilm(link,number){
 renderBestFilm(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`,0);
 
 
-document.getElementById("prevBest").addEventListener("click",function() {
-    try{
-        if (numberBestFilm<0){
-            numberBestFilm=0;
-        }
-            numberBestFilm--;
-            renderBestFilm(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`,numberBestFilm);
-    }
-    catch(TypeError){
-    }
-});
-document.getElementById("nextBest").addEventListener("click",function() {
-    try{
-        numberBestFilm++;
-        renderBestFilm(`http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes,-imdb_score`,numberBestFilm);
-        if(numberBestFilm > 4){
-            throw new Error();
-        }
-    }
-    catch(e){
-        numberBestFilm = 0;
-        var link = `http://127.0.0.1:8000/api/v1/titles/?sort_by=-votes%2C-imdb_score`;
-        renderBestFilm(link,numberBestFilm);
-    }
-});
-
-
-
 async function renderCarousel(lien,carouselInner,h2,page,categorie,nomCate){
 
         var dataList = await fetchSite(lien);

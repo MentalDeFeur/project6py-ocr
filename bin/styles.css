@@ -161,4 +161,14 @@ h2{
     transform: translateY(-50%);
 }
 
+#coverBestFilm{
+    display: flex;
+    align-items: center;
+}
+
+#titreBestFilm,#resumeBestFilm,#buttonBestFilm{
+    display: flex;
+    flex-direction: column;
+}
+
 
