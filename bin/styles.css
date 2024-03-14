@@ -161,14 +161,18 @@ h2{
     transform: translateY(-50%);
 }
 
-#coverBestFilm{
+.meilleurCar{
     display: flex;
     align-items: center;
+    background-image: url(background2.jpg);
+}
+#imageBestFilmDiv{
+    margin: 20px 20px 20px 20px;
+}
+#infoBestFilm{
+    flex: 1;
 }
 
-#titreBestFilm,#resumeBestFilm,#buttonBestFilm{
-    display: flex;
-    flex-direction: column;
-}
+
 
 
