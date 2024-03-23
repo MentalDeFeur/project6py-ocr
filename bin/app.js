@@ -56,8 +56,14 @@ async function renderBestFilm(link,number){
     const response = await fetch(url+id);
     const result = await response.json();
 
+    console.log(dataList);
+
     document.getElementById("resumeBestFilm").textContent = result["description"];
     document.getElementById("titreBestFilm").textContent = result["title"];
+
+    document.getElementById("buttonBestFilm").addEventListener("click", function(){
+        window.open(dataList["results"][number].imdb_url);
+    });
 
 }
 

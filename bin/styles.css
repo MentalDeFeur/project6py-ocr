@@ -2,7 +2,8 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-}
+    margin-bottom: 200px;
+    }
 
 /*Barre de navigation */
 nav{
@@ -171,6 +172,11 @@ h2{
 }
 #infoBestFilm{
     flex: 1;
+}
+
+#buttonBestFilm{
+    width: 100px;
+    height: 40px;
 }
 
 
