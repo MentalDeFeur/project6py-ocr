@@ -1,104 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <meta name="viewport" content="width=device-width ,initial-scale= 1.0">
-    <title>JustStreamIt</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <meta name="viewport" content="width=device-width ,initial-scale= 1.0">
+        <title>JustStreamIt</title>
+    </head>
+    <body>
+        <!--Barre de navigation-->
+        <nav>
+            <div id="gauche">
+                <img id="logo" src="logo.png" alt="logosite" height="60">
+                <div id="onglets">
+                    <p>Accueil</p>
+                    <p>Catégories</p>
+                </div>
+            </div>
+        </nav>
+        <!--Fin de la barre de navigation-->
 
-
-<body>
-    <!--Barre de navigation-->
-    <nav>
-        <div id="gauche">
-            <img id="logo" src="logo.png" alt="logosite" height="60" />
-            <div id="onglets">
-                <p>Accueil</p>
-                <p>Catégories</p>
+        <!--Best Movies-->
+        <section class="meilleurCar">
+                <div id="imageBestFilmDiv">
+                    <img id="imgBestFilm" alt="Meilleur film le mieux noté" src="none">
+                </div>
+                <div id="infoBestFilm">
+                    <h1 id="titreBestFilm">None</h1>
+                    <p id="resumeBestFilm"></p>
+                    <button id="buttonBestFilm">Play</button>
+                </div>
+        </section>
+        <!--Fin Best Movies-->
+        
+        <!--Caroussel-->
+        <div id="meilleur">
+            <div id="carousel">
+                <div id="carousel-inner">          
+                </div>
+                <button id="prevButton">&#10096;</button>
+                <button id="nextButton">&#10097;</button>
             </div>
         </div>
-    </nav>
-    <!--Fin de la barre de navigation-->
 
-    <!--Best Movies-->
-    <section class="meilleurCar">
-            <div id="imageBestFilmDiv">
-                <img id="imgBestFilm" src=""/>
+        <div id="categorie1">
+            <div id="carousel1"> 
+                <div id="carousel-inner1">          
+                </div>
+                <button id="prevButton2">&#10096;</button>
+                <button id="nextButton2">&#10097;</button>
             </div>
-            <div id="infoBestFilm">
-                <h1 id="titreBestFilm"></h1>
-                <p id="resumeBestFilm"></p>
-                <button id="buttonBestFilm">Play</button>
+        </div>
+
+        <div id="categorie2">
+            <div id="carousel2">
+            <div id="carousel-inner2">          
             </div>
-    </section>
-    <!--Fin Best Movies-->
-    
-    <!--Caroussel-->
-    <section id="meilleur">
-        <div id="carousel">
-            <div id="carousel-inner">          
+            <button id="prevButton3">&#10096;</button>
+            <button id="nextButton3">&#10097;</button>
             </div>
-            <button id="prevButton">&#10096</button>
-            <button id="nextButton">&#10097</button>
         </div>
-    </section>
-
-    <section id="categorie1">
-        <div id="carousel1"> 
-            <div id="carousel-inner1">          
+        <div id="categorie3">
+            <div id="carousel3">
+            <div id="carousel-inner3">          
             </div>
-            <button id="prevButton2">&#10096</button>
-            <button id="nextButton2">&#10097</button>
-        </div>
-    </section>
-
-    <section id="categorie2">
-        <div id="carousel2">
-        <div id="carousel-inner2">          
-        </div>
-        <button id="prevButton3">&#10096</button>
-        <button id="nextButton3">&#10097</button>
-        </div>
-    </section>
-    <section id="categorie3">
-        <div id="carousel3">
-        <div id="carousel-inner3">          
-        </div>
-        <button id="prevButton4">&#10096</button>
-        <button id="nextButton4">&#10097</button>
-        </div>
-    </section>
-    <!--Fin de carroussel-->
-    
-
-    <!--Modal-->
-    <dialog class="modal" id="modal">
-            <span id="close">&times;</span>
-            <div class="image">
-                <img src="" alt="movie cover" id="cover">
+            <button id="prevButton4">&#10096;</button>
+            <button id="nextButton4">&#10097;</button>
             </div>
-            <h3 class="title" id="title"></h3>
+        </div>
+        <!--Fin de carroussel-->
+        
 
-            <strong>Année:</strong> <p id="year"></p>
-            <strong>Date de sortie:</strong><p id="date"></p>
-            <strong>Durée:</strong><p id="duration"></p>
-            <strong>Vote:</strong><p id="rating"></p>
-            <strong>Note du film:</strong><p id="avg_vote"></p>
-            <strong>Score IMDb:</strong><p id="imdb"></p>
-            <strong>Acteurs:</strong><p id="actors"></p>
-            <strong>Pays:</strong><p id="country"></p>
-            <strong>Résumé:</strong><p id="resume"></p>
-            <strong>Genres:</strong><p id="genres"></p>
-            <strong>Director:</strong><p id="director"></p>
+        <!--Modal-->
+        <dialog class="modal" id="modal">
+                <span id="close">&times;</span>
+                <div class="image">
+                    <img src="none" alt="movie cover" id="cover">
+                </div>
+                <h3 class="title" id="title">Title</h3>
 
-    </dialog>
-    <!--Fin de modal-->
+                <strong>Année:</strong><p id="year"></p>
+                <strong>Date de sortie:</strong><p id="date"></p>
+                <strong>Durée:</strong><p id="duration"></p>
+                <strong>Vote:</strong><p id="rating"></p>
+                <strong>Note du film:</strong><p id="avg_vote"></p>
+                <strong>Score IMDb:</strong><p id="imdb"></p>
+                <strong>Acteurs:</strong><p id="actors"></p>
+                <strong>Pays:</strong><p id="country"></p>
+                <strong>Résumé:</strong><p id="resume"></p>
+                <strong>Genres:</strong><p id="genres"></p>
+                <strong>Director:</strong><p id="director"></p>
 
-    <footer>
-        <p>2024 JustStreamIt</p>
-    </footer>
+        </dialog>
+        <!--Fin de modal-->
 
-    <script src="app.js"></script>
-</body>
+        <footer>
+            <p>2024 JustStreamIt</p>
+        </footer>
+
+        <script src="app.js"></script>
+    </body>
 </html>
